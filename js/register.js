@@ -8,7 +8,7 @@
 
 // Use the same shared API base URL pattern as auth.js and data.js
 // This avoids 'const' re-declaration errors when multiple scripts load
-window.API_BASE_URL = window.API_BASE_URL || 'http://127.0.0.1:5000';
+window.API_BASE_URL = window.API_BASE_URL || 'https://karuneshkarna.pythonanywhere.com';
 var API_BASE_URL = window.API_BASE_URL;
 
 // Simple email format check (same pattern as backend)

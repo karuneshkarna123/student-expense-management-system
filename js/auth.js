@@ -5,7 +5,7 @@
  */
 
 // Backend Flask API Base URL (Safe global configuration)
-window.API_BASE_URL = window.API_BASE_URL || 'http://127.0.0.1:5000';
+window.API_BASE_URL = window.API_BASE_URL || 'https://karuneshkarna.pythonanywhere.com';
 var API_BASE_URL = window.API_BASE_URL;
 
 // Storage keys for browser session
