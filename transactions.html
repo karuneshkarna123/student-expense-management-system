@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Transaction History - Student Expense Management System</title>
+  <link rel="stylesheet" href="css/style.css">
+  <!-- Remixicon for icons -->
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+</head>
+<body id="transactionsPage">
+
+  <div class="app-container">
+    
+    <!-- Sidebar Navigation -->
+    <aside class="sidebar">
+      <div class="sidebar-brand">
+        <div class="brand-icon">
+          <i class="ri-wallet-3-line"></i>
+        </div>
+        <div class="brand-text">
+          <h2>Student Expense</h2>
+          <span>BCA Academic Project</span>
+        </div>
+      </div>
+
+      <ul class="sidebar-nav">
+        <li>
+          <a href="dashboard.html" class="nav-link">
+            <i class="ri-dashboard-line"></i>
+            <span>Dashboard</span>
+          </a>
+        </li>
+        <li>
+          <a href="add-transaction.html" class="nav-link">
+            <i class="ri-add-circle-line"></i>
+            <span>Add Transaction</span>
+          </a>
+        </li>
+        <li>
+          <a href="transactions.html" class="nav-link active">
+            <i class="ri-file-list-3-line"></i>
+            <span>Transaction History</span>
+          </a>
+        </li>
+        <li>
+          <a href="reports.html" class="nav-link">
+            <i class="ri-pie-chart-line"></i>
+            <span>Reports & Analytics</span>
+          </a>
+        </li>
+      </ul>
+
+      <div class="sidebar-user">
+        <div class="user-info">
+          <div class="user-avatar">S</div>
+          <div class="user-details">
+            <h4 class="user-display-name">Demo Student</h4>
+            <p class="user-display-email">student@example.com</p>
+          </div>
+        </div>
+        <button class="btn-logout" id="logoutBtn" title="Logout">
+          <i class="ri-logout-box-r-line"></i>
+        </button>
+      </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <div class="main-wrapper">
+      
+      <!-- Top Header -->
+      <header class="top-header">
+        <div style="display: flex; align-items: center; gap: 14px;">
+          <button class="mobile-menu-toggle" aria-label="Toggle menu">
+            <i class="ri-menu-2-line"></i>
+          </button>
+          <div class="header-title">
+            <h1>Transaction History</h1>
+            <p>View, search, filter and manage all your past income and expense records</p>
+          </div>
+        </div>
+
+        <div class="header-actions">
+          <a href="add-transaction.html" class="btn btn-primary btn-sm">
+            <i class="ri-add-line"></i> Add New
+          </a>
+        </div>
+      </header>
+
+      <!-- Main Body Container -->
+      <main class="content-area">
+        
+        <div class="card">
+          
+          <!-- Filter and Search Bar -->
+          <div class="filter-bar">
+            <div class="filter-inputs">
+              <!-- Search Input -->
+              <input 
+                type="text" 
+                id="searchInput" 
+                class="form-control" 
+                placeholder="🔍 Search description or category..."
+              >
+
+              <!-- Type Filter -->
+              <select id="typeFilter" class="form-control">
+                <option value="all">All Types (Income & Expense)</option>
+                <option value="expense">Expenses Only</option>
+                <option value="income">Income Only</option>
+              </select>
+
+              <!-- Category Filter -->
+              <select id="categoryFilter" class="form-control">
+                <option value="all">All Categories</option>
+              </select>
+            </div>
+
+            <div id="txCount" style="font-size: 0.85rem; font-weight: 600; color: var(--text-muted);">
+              Showing transactions
+            </div>
+          </div>
+
+          <!-- Transactions Table -->
+          <div class="table-container">
+            <table class="custom-table">
+              <thead>
+                <tr>
+                  <th>Date</th>
+                  <th>Description</th>
+                  <th>Category</th>
+                  <th>Type</th>
+                  <th>Amount</th>
+                  <th style="text-align: right;">Action</th>
+                </tr>
+              </thead>
+              <tbody id="transactionsTableBody">
+                <!-- Dynamically populated via app.js -->
+              </tbody>
+            </table>
+          </div>
+
+        </div>
+
+      </main>
+    </div>
+
+  </div>
+
+  <!-- Application Scripts -->
+  <script src="js/data.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

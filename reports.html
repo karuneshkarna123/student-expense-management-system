@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Reports & Analytics - Student Expense Management System</title>
+  <link rel="stylesheet" href="css/style.css">
+  <!-- Remixicon for icons -->
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body id="reportsPage">
+
+  <div class="app-container">
+    
+    <!-- Sidebar Navigation -->
+    <aside class="sidebar">
+      <div class="sidebar-brand">
+        <div class="brand-icon">
+          <i class="ri-wallet-3-line"></i>
+        </div>
+        <div class="brand-text">
+          <h2>Student Expense</h2>
+          <span>BCA Academic Project</span>
+        </div>
+      </div>
+
+      <ul class="sidebar-nav">
+        <li>
+          <a href="dashboard.html" class="nav-link">
+            <i class="ri-dashboard-line"></i>
+            <span>Dashboard</span>
+          </a>
+        </li>
+        <li>
+          <a href="add-transaction.html" class="nav-link">
+            <i class="ri-add-circle-line"></i>
+            <span>Add Transaction</span>
+          </a>
+        </li>
+        <li>
+          <a href="transactions.html" class="nav-link">
+            <i class="ri-file-list-3-line"></i>
+            <span>Transaction History</span>
+          </a>
+        </li>
+        <li>
+          <a href="reports.html" class="nav-link active">
+            <i class="ri-pie-chart-line"></i>
+            <span>Reports & Analytics</span>
+          </a>
+        </li>
+      </ul>
+
+      <div class="sidebar-user">
+        <div class="user-info">
+          <div class="user-avatar">S</div>
+          <div class="user-details">
+            <h4 class="user-display-name">Demo Student</h4>
+            <p class="user-display-email">student@example.com</p>
+          </div>
+        </div>
+        <button class="btn-logout" id="logoutBtn" title="Logout">
+          <i class="ri-logout-box-r-line"></i>
+        </button>
+      </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <div class="main-wrapper">
+      
+      <!-- Top Header -->
+      <header class="top-header">
+        <div style="display: flex; align-items: center; gap: 14px;">
+          <button class="mobile-menu-toggle" aria-label="Toggle menu">
+            <i class="ri-menu-2-line"></i>
+          </button>
+          <div class="header-title">
+            <h1>Financial Reports & Analytics</h1>
+            <p>Visual breakdown and in-depth analysis of your student spending</p>
+          </div>
+        </div>
+
+        <div class="header-actions">
+          <button class="btn btn-secondary btn-sm" onclick="window.print()">
+            <i class="ri-printer-line"></i> Print / Export Report
+          </button>
+        </div>
+      </header>
+
+      <!-- Main Body Container -->
+      <main class="content-area">
+
+        <!-- 1. Key Metrics Summary -->
+        <section class="stats-grid">
+          <div class="card stat-card">
+            <div class="stat-icon-wrapper stat-icon-success">
+              <i class="ri-arrow-down-circle-line"></i>
+            </div>
+            <div class="stat-info">
+              <span>Total Received</span>
+              <h3 id="repTotalIncome">₹0.00</h3>
+            </div>
+          </div>
+
+          <div class="card stat-card">
+            <div class="stat-icon-wrapper stat-icon-danger">
+              <i class="ri-arrow-up-circle-line"></i>
+            </div>
+            <div class="stat-info">
+              <span>Total Spent</span>
+              <h3 id="repTotalExpense">₹0.00</h3>
+            </div>
+          </div>
+
+          <div class="card stat-card">
+            <div class="stat-icon-wrapper stat-icon-primary">
+              <i class="ri-funds-box-line"></i>
+            </div>
+            <div class="stat-info">
+              <span>Net Savings</span>
+              <h3 id="repNetSavings">₹0.00</h3>
+            </div>
+          </div>
+
+          <div class="card stat-card">
+            <div class="stat-icon-wrapper" style="background: var(--info-light); color: var(--info);">
+              <i class="ri-file-text-line"></i>
+            </div>
+            <div class="stat-info">
+              <span>Transactions</span>
+              <h3 id="repTotalTxCount">0</h3>
+            </div>
+          </div>
+        </section>
+
+        <!-- 2. Charts Visualizations -->
+        <section class="dashboard-grid">
+          
+          <!-- Category Spending Breakdown Pie Chart -->
+          <div class="card">
+            <div class="card-header">
+              <div>
+                <h3 class="card-title">Expense Distribution by Category</h3>
+                <p class="card-subtitle">Visual split of all student expenses</p>
+              </div>
+            </div>
+            <div class="chart-container" style="height: 300px;">
+              <canvas id="reportCategoryPieChart"></canvas>
+            </div>
+          </div>
+
+          <!-- Monthly Cash Flow Bar Chart -->
+          <div class="card">
+            <div class="card-header">
+              <div>
+                <h3 class="card-title">Monthly Cash Inflow vs Outflow</h3>
+                <p class="card-subtitle">Monthly comparison of student budget</p>
+              </div>
+            </div>
+            <div class="chart-container" style="height: 300px;">
+              <canvas id="reportMonthlyBarChart"></canvas>
+            </div>
+          </div>
+
+        </section>
+
+        <!-- 3. Category Breakdown Table -->
+        <section class="card">
+          <div class="card-header">
+            <div>
+              <h3 class="card-title">Detailed Category-Wise Breakdown</h3>
+              <p class="card-subtitle">Total amount and percentage contribution to overall spending</p>
+            </div>
+          </div>
+
+          <div class="table-container">
+            <table class="custom-table">
+              <thead>
+                <tr>
+                  <th>Expense Category</th>
+                  <th>Total Amount Spent</th>
+                  <th>Percentage of Total Expenses</th>
+                </tr>
+              </thead>
+              <tbody id="categorySummaryTableBody">
+                <!-- Dynamically populated via app.js -->
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+      </main>
+    </div>
+
+  </div>
+
+  <!-- Application Scripts -->
+  <script src="js/data.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

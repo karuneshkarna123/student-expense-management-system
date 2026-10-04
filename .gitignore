@@ -1,0 +1,39 @@
+# Python cache files
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+
+# Environment files (contain secrets — never commit these)
+.env
+.env.local
+.env.production
+
+# Virtual environment directories
+.venv/
+venv/
+env/
+ENV/
+
+# SQLite database (contains user data — keep out of version control)
+backend/database.db
+backend/database.db.backup
+*.db
+*.sqlite
+*.sqlite3
+
+# OS-generated files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# VS Code workspace settings
+.vscode/
+
+# PyCharm project files
+.idea/
+
+# Byte-compiled / optimized Python
+*.egg-info/
+dist/
+build/
